@@ -1,7 +1,8 @@
 class ClothesController < ApplicationController
 
     def index
-        render json: Clothes.all
+        clothes = Clothes.all
+        render json: {status: 200, clothes: clothes}
     end
 
 end
