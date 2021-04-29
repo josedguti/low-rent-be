@@ -10,17 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_200634) do
+ActiveRecord::Schema.define(version: 2021_04_29_155003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "closets", force: :cascade do |t|
+    t.bigint "wishlist_id", null: false
+    t.bigint "clothes_id", null: false
+    t.integer "qty"
+    t.string "size"
+    t.index ["clothes_id"], name: "index_closets_on_clothes_id"
+    t.index ["wishlist_id"], name: "index_closets_on_wishlist_id"
+  end
 
   create_table "clothes", force: :cascade do |t|
     t.string "name"
     t.string "category"
     t.integer "price"
-    t.string "size"
     t.string "picture"
+    t.string "description"
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.string "userId"
+  end
+
+  add_foreign_key "closets", "clothes", column: "clothes_id"
+  add_foreign_key "closets", "wishlists"
 end
