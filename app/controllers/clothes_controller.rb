@@ -3,11 +3,11 @@ class ClothesController < ApplicationController
 
     def index
         @clothes = Clothes.all
-        render json: @clothes
+        render json: @clothes.to_json(include: :wishlists)
     end
 
     def show
-        render json: @clothes
+        render json: @clothes.to_json(include: :wishlists)
     end
 
     def create

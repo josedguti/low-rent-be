@@ -1,14 +1,14 @@
-class WishlistzsController < ApplicationController
+class WishlistsController < ApplicationController
     before_action :set_wishlist, only: [:show, :update, :destroy]
   
     def index
       @wishlists = Wishlist.all
   
-      render json: @wishlists
+      render json: @wishlists.to_json(include: :clothes)
     end
   
     def show
-      render json: @wishlist
+      render json: @wishlist.to_json(include: :clothes)
     end
   
     def create
