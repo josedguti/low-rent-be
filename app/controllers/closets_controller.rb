@@ -5,12 +5,12 @@ class ClosetsController < ApplicationController
   def index
     @closets = Closet.all
 
-    render json: @closets
+    render json: @closets.to_json(include: [:wishlist, :clothes])
   end
 
   # GET /closets/1
   def show
-    render json: @closet
+    render json: @closet.to_json(include: [:wishlist, :clothes])
   end
 
   # POST /closets
