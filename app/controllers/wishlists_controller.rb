@@ -15,7 +15,7 @@ class WishlistsController < ApplicationController
       @wishlist = Wishlist.new(wishlist_params)
   
       if @wishlist.save
-        render json: @wishlist, status: :created, location: @wishlist
+        render json: Wishlist.all, status: :created, location: @wishlist
       else
         render json: @wishlist.errors, status: :unprocessable_entity
       end
@@ -23,7 +23,7 @@ class WishlistsController < ApplicationController
   
     def update
       if @wishlist.update(wishlist_params)
-        render json: @wishlist
+        render json: Wishlist.all
       else
         render json: @wishlist.errors, status: :unprocessable_entity
       end
@@ -31,6 +31,7 @@ class WishlistsController < ApplicationController
   
     def destroy
       @wishlist.destroy
+      render json: Wishlist.all
     end
   
     private
