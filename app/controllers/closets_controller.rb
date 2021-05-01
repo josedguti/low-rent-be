@@ -18,7 +18,7 @@ class ClosetsController < ApplicationController
     @closet = Closet.new(closet_params)
 
     if @closet.save
-      render json: @closet, status: :created, location: @closet
+      render json: Closet.all, status: :created, location: @closet
     else
       render json: @closet.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ClosetsController < ApplicationController
   # PATCH/PUT /closets/1
   def update
     if @closet.update(closet_params)
-      render json: @closet
+      render json: Closet.all
     else
       render json: @closet.errors, status: :unprocessable_entity
     end
@@ -36,6 +36,7 @@ class ClosetsController < ApplicationController
   # DELETE /closets/1
   def destroy
     @closet.destroy
+    render json: Closet.all
   end
 
   private
