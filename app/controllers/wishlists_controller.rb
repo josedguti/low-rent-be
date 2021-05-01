@@ -23,7 +23,7 @@ class WishlistsController < ApplicationController
   
     def update
       if @wishlist.update(wishlist_params)
-        render json: @wishlist
+        render json: Wishlist.all
       else
         render json: @wishlist.errors, status: :unprocessable_entity
       end
@@ -31,6 +31,7 @@ class WishlistsController < ApplicationController
   
     def destroy
       @wishlist.destroy
+      render json: Wishlist.all
     end
   
     private
